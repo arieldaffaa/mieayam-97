@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mie Ayam Ayam 97</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4e1c4;
+            color: #8b0000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+        header {
+            background-color: #8b0000;
+            color: gold;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+        nav {
+            background-color: gold;
+            padding: 10px;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #8b0000;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        nav a:hover {
+            color: #f4e1c4;
+            transform: scale(1.1);
+        }
+        .container {
+            display: none;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .menu-item {
+            margin: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu-item:hover {
+            transform: rotateY(10deg) scale(1.1);
+        }
+        .logo {
+            width: 150px;
+            transition: transform 1s ease-in-out;
+        }
+        .logo:hover {
+            transform: rotate(360deg);
+        }
+        .menu-image {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .menu-image:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+    <script>
+        function showSlide(slideId) {
+            document.querySelectorAll('.container').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(slideId).classList.add('active');
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlide('beranda');
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo Mie Ayam Ayam 97" class="logo">
+        <h1>Mie Ayam Ayam 97</h1>
+    </header>
+    <nav>
+        <a onclick="showSlide('beranda')">Beranda</a>
+        <a onclick="showSlide('feedback')">Customer Feedback</a>
+    </nav>
+    
+    <div class="container" id="beranda">
+        <h2>Selamat Datang di Mie Ayam Ayam 97</h2>
+        <p>Mie Ayam Ayam 97 adalah pilihan terbaik bagi pecinta bakmi yang menginginkan cita rasa autentik dan kualitas premium. Berlokasi di Bandung, kami menghadirkan bakmi dengan tekstur kenyal yang dipadukan dengan ayam pilihan berkualitas, serta racikan bumbu khas yang menggugah selera.</p>
+        <h2>Menu</h2>
+        <p class="menu-item">🍜 Mie Ayame Ayam Tabur</p>
+        <p class="menu-item">🍄 Mie Ayame Ayam Jamur</p>
+        <p class="menu-item">🌶️ Mie Ayame Ayam Rica</p>
+        <p class="menu-item">🔥 Mie Ayame Chili Oil</p>
+        <img src="menu.jpg" alt="Menu Mie Ayam Ayam 97" class="menu-image">
+        <h2>Kontak</h2>
+        <p>📞 086547861565</p>
+        <p>📍 Lokasi: Bandung</p>
+        <h2>Pemesanan Online</h2>
+        <p>📲 Melalui Nomor Telepon: <strong>086547861565</strong></p>
+        <p>🚀 Bisa juga melalui <strong>Shopee Food</strong></p>
+    </div>
+    
+    <div class="container" id="feedback">
+        <h2>Customer Feedback</h2>
+        <form class="feedback-form">
+            <input type="text" placeholder="Nama" required>
+            <textarea placeholder="Tulis ulasan Anda di sini..." rows="4" required></textarea>
+            <button type="submit">Kirim Feedback</button>
+        </form>
+    </div>
+    
+    <footer>
+        &copy; 2025 Mie Ayam Ayam 97 - Bandung
+    </footer>
+</body>
+</html>
