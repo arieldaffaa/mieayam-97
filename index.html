@@ -1,147 +1,220 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mie Ayam 97</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4e1c4;
-            color: #8b0000;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            transition: background-color 0.5s;
-        }
-        header {
-            background-color: #8b0000;
-            color: gold;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            animation: slideDown 0.8s ease-out;
-        }
-        nav {
-            background-color: gold;
-            padding: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #8b0000;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s, transform 0.3s;
-            cursor: pointer;
-        }
-        nav a:hover {
-            color: #f4e1c4;
-            transform: scale(1.1);
-        }
-        .container {
-            display: none;
-            padding: 20px;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .active {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-        .menu-item {
-            margin: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-block;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .menu-item:hover {
-            transform: rotateY(10deg) scale(1.1);
-        }
-        .logo {
-            width: 150px;
-            transition: transform 1s ease-in-out;
-        }
-        .logo:hover {
-            transform: rotate(360deg);
-        }
-        .menu-image {
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
-            border-radius: 10px;
-            transition: transform 0.5s ease-in-out;
-        }
-        .menu-image:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    </style>
-    <script>
-        function showSlide(slideId) {
-            document.querySelectorAll('.container').forEach(slide => {
-                slide.classList.remove('active');
-            });
-            document.getElementById(slideId).classList.add('active');
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            showSlide('beranda');
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mie Ayam 97</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f4e1c4, #fefcea);
+      color: #8b0000;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      transition: background 0.5s;
+    }
+    header {
+      background-color: #8b0000;
+      color: gold;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 0.8s ease-out;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    nav {
+      background-color: gold;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    nav a {
+      margin: 0 15px;
+      color: #8b0000;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #f4e1c4;
+      transform: scale(1.1);
+    }
+    /* Wrapper untuk kontainer agar bisa diberi posisi absolute */
+    .slides-wrapper {
+      position: relative;
+      min-height: 400px;
+      overflow: hidden;
+    }
+    .container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .container.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      position: relative;
+    }
+    .menu-item {
+      margin: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .menu-item:hover {
+      transform: rotateY(10deg) scale(1.1);
+    }
+    .logo {
+      width: 120px;
+      margin-right: 15px;
+      transition: transform 1s ease-in-out;
+    }
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+    .menu-image {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+      border-radius: 10px;
+      transition: transform 0.5s ease-in-out;
+    }
+    .menu-image:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    article {
+      text-align: left;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #8b0000;
+      color: gold;
+      padding: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+      margin-top: 40px;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* Responsive Media Query */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        font-size: 20px;
+      }
+      nav a {
+        display: inline-block;
+        margin: 5px 10px;
+        font-size: 16px;
+      }
+      .menu-item {
+        margin: 10px;
+        font-size: 18px;
+      }
+      article {
+        padding: 15px;
+      }
+    }
+  </style>
+  <script>
+    function showSlide(slideId) {
+      // Hapus kelas active dari semua kontainer untuk memulai transisi fade-out
+      document.querySelectorAll('.container').forEach(slide => {
+        slide.classList.remove('active');
+      });
+      // Setelah delay singkat, tambahkan kelas active ke kontainer yang dipilih untuk transisi fade-in
+      setTimeout(() => {
+        document.getElementById(slideId).classList.add('active');
+      }, 50);
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      showSlide('beranda');
+    });
+  </script>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo Mie Ayam Ayam 97" class="logo">
-        <h1>Mie Ayam 97</h1>
-    </header>
-    <nav>
-        <a onclick="showSlide('beranda')">Beranda</a>
-        <a onclick="showSlide('feedback')">Customer Feedback</a>
-    </nav>
-    
+  <header>
+    <img src="logo.png" alt="Logo Mie Ayam 97" class="logo">
+    <h1>Mie Ayam 97</h1>
+  </header>
+  <nav>
+    <a onclick="showSlide('beranda')">Beranda</a>
+    <a onclick="showSlide('cerita')">Cerita</a>
+    <a onclick="showSlide('feedback')">Customer Feedback</a>
+  </nav>
+  
+  <div class="slides-wrapper">
     <div class="container" id="beranda">
-        <h2>Selamat Datang di Mie Ayam 97</h2>
-        <p>Mie Ayam 97 adalah pilihan terbaik untuk menjadi destinasi utama bagi pecinta Mie ayam dengan cita rasa autentik dan inovatif, yang menyajikan pengalaman kuliner berkualitas tinggi dan pelayanan terbaik di Indonesia.. Berlokasi di Bandung, kami menghadirkan bakmi dengan tekstur kenyal yang dipadukan dengan ayam pilihan berkualitas, serta racikan bumbu khas yang menggugah selera.</p>
-        <h2>Menu</h2>
-        <p class="menu-item">🍜 Mie Ayam Ayam Tabur</p>
-        <p class="menu-item">🍄 Mie Ayam Ayam Jamur</p>
-        <p class="menu-item">🌶️ Mie Ayam Ayam Rica</p>
-        <p class="menu-item">🔥 Mie Ayam Chili Oil</p>
-        <img src="menu.jpg" alt="Menu Mie Ayam Ayam 97" class="menu-image">
-        <h2>Kontak</h2>
-        <p>📞 086547861565</p>
-        <p>📍 Lokasi: Bandung</p>
-        <h2>Pemesanan Online</h2>
-        <p>📲 Melalui Nomor Telepon: <strong>086547861565</strong></p>
-        <p>🚀 Bisa juga melalui <strong>Shopee Food</strong></p>
+      <h2>Selamat Datang di Mie Ayam 97</h2>
+      <p>Mie Ayam 97 adalah pilihan terbaik untuk menjadi destinasi utama bagi pecinta mie ayam dengan cita rasa autentik dan inovatif. Berlokasi di Bandung, kami menghadirkan bakmi dengan tekstur kenyal yang dipadukan dengan ayam pilihan serta racikan bumbu khas yang menggugah selera.</p>
+      <h2>Menu</h2>
+      <div>
+        <span class="menu-item">🍜 Mie Ayam Tabur</span>
+        <span class="menu-item">🍄 Mie Ayam Jamur</span>
+        <span class="menu-item">🌶️ Mie Ayam Rica</span>
+        <span class="menu-item">🔥 Mie Ayam Chili Oil</span>
+      </div>
+      <img src="menu.jpg" alt="Menu Mie Ayam 97" class="menu-image">
+      <h2>Kontak</h2>
+      <p>📞 086547861565</p>
+      <p>📍 Lokasi: Bandung</p>
+      <h2>Pemesanan Online</h2>
+      <p>📲 Hubungi: <strong>086547861565</strong></p>
+      <p>🚀 Pesan melalui <strong>Shopee Food</strong></p>
+    </div>
+    
+    <div class="container" id="cerita">
+      <h2>Cerita di Balik Nama Mie Ayam 97</h2>
+      <article>
+        <p>Angka <strong>97</strong> di nama Mie Ayam 97 memiliki makna khusus dalam budaya Tionghoa. Angka <strong>9 (九)</strong> melambangkan panjang umur dan keberlanjutan, mencerminkan kualitas bakmi yang tidak sekadar tren sesaat, melainkan cita rasa autentik yang terus bertahan dan berkembang.</p>
+        <p>Sementara itu, angka <strong>7 (七)</strong> melambangkan keberuntungan dan harmoni. Nilai ini mencerminkan keseimbangan dalam setiap sajian serta keberhasilan bisnis yang stabil, menjadikan setiap porsi mie ayam kami istimewa.</p>
+        <p>Kombinasi dari angka 9 dan 7 melambangkan kesuksesan jangka panjang dan kemakmuran, sejalan dengan visi kami untuk menjadikan Mie Ayam 97 sebagai brand mie ayam yang ikonik dan dicintai pelanggan. Simbol lingkaran penuh berwarna putih yang mengelilingi angka-angka tersebut semakin menegaskan identitas kami sebagai representasi keberlanjutan dan keharmonisan.</p>
+      </article>
     </div>
     
     <div class="container" id="feedback">
-        <h2>Customer Feedback</h2>
-        <form class="feedback-form">
-            <input type="text" placeholder="Nama" required>
-            <textarea placeholder="Tulis ulasan Anda di sini..." rows="4" required></textarea>
-            <button type="submit">Kirim Feedback</button>
-        </form>
+      <h2>Customer Feedback</h2>
+      <form class="feedback-form">
+        <input type="text" placeholder="Nama" required style="padding: 10px; margin: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;">
+        <br>
+        <textarea placeholder="Tulis ulasan Anda di sini..." rows="4" required style="padding: 10px; margin: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+        <br>
+        <button type="submit" style="padding: 10px 20px; background-color: #8b0000; color: gold; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">Kirim Feedback</button>
+      </form>
     </div>
-    
-    <footer>
-        &copy; 2025 Mie Ayam 97 - Bandung
-    </footer>
+  </div>
+  
+  <footer>
+    &copy; 2025 Mie Ayam 97 - Bandung
+  </footer>
 </body>
 </html>
