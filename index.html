@@ -110,6 +110,31 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    /* Tombol baca selengkapnya untuk konten yang ada di section 'Cerita' */
+    .read-more-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #8b0000;
+      color: gold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 16px;
+    }
+    .read-more-btn:hover {
+      background-color: #a00000;
+    }
+    /* Konten tambahan tersembunyi di section 'Cerita' */
+    .more-content {
+      display: none;
+      margin-top: 20px;
+      animation: fadeInUp 1s forwards;
     }
     footer {
       background: #8b0000;
@@ -124,6 +149,10 @@
     @keyframes slideDown {
       from { transform: translateY(-100px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     /* Responsive Media Query */
     @media (max-width: 768px) {
@@ -159,6 +188,16 @@
     document.addEventListener("DOMContentLoaded", function() {
       showSlide('beranda');
     });
+    
+    // Fungsi untuk menampilkan konten tambahan di section "Cerita"
+    function toggleMoreContent() {
+      var moreContent = document.getElementById("moreContent");
+      if (moreContent.style.display === "block") {
+        moreContent.style.display = "none";
+      } else {
+        moreContent.style.display = "block";
+      }
+    }
   </script>
 </head>
 <body>
@@ -169,6 +208,7 @@
   <nav>
     <a onclick="showSlide('beranda')">Beranda</a>
     <a onclick="showSlide('cerita')">Cerita</a>
+    <a onclick="showSlide('artikel')">Jenis Mie</a>
     <a onclick="showSlide('feedback')">Customer Feedback</a>
   </nav>
   
@@ -198,6 +238,38 @@
         <p>Angka <strong>97</strong> di nama Mie Ayam 97 memiliki makna khusus dalam budaya Tionghoa. Angka <strong>9 (九)</strong> melambangkan panjang umur dan keberlanjutan, mencerminkan kualitas bakmi yang tidak sekadar tren sesaat, melainkan cita rasa autentik yang terus bertahan dan berkembang.</p>
         <p>Sementara itu, angka <strong>7 (七)</strong> melambangkan keberuntungan dan harmoni. Nilai ini mencerminkan keseimbangan dalam setiap sajian serta keberhasilan bisnis yang stabil, menjadikan setiap porsi mie ayam kami istimewa.</p>
         <p>Kombinasi dari angka 9 dan 7 melambangkan kesuksesan jangka panjang dan kemakmuran, sejalan dengan visi kami untuk menjadikan Mie Ayam 97 sebagai brand mie ayam yang ikonik dan dicintai pelanggan. Simbol lingkaran penuh berwarna putih yang mengelilingi angka-angka tersebut semakin menegaskan identitas kami sebagai representasi keberlanjutan dan keharmonisan.</p>
+        <!-- Tombol untuk menampilkan konten tambahan -->
+        <button class="read-more-btn" onclick="toggleMoreContent()">Baca Selengkapnya</button>
+        <!-- Konten tambahan yang tersembunyi -->
+        <div id="moreContent" class="more-content">
+          <p>Selain filosofi di balik angka 97, perjalanan Mie Ayam 97 juga dimulai dari keinginan untuk menghadirkan inovasi dalam setiap sajian. Kami terus berinovasi dengan varian menu baru dan pelayanan yang ramah untuk memastikan setiap pelanggan mendapatkan pengalaman kuliner yang tak terlupakan.</p>
+          <p>Setiap resep kami telah melalui riset dan pengujian yang mendalam untuk menjaga kualitas dan cita rasa. Dengan menggunakan bahan-bahan pilihan dan teknik memasak yang terjaga, kami berkomitmen untuk selalu memberikan yang terbaik kepada para pecinta mie ayam.</p>
+        </div>
+      </article>
+    </div>
+    
+    <div class="container" id="artikel">
+      <h2>Mengenal Berbagai Jenis Mie di Indonesia</h2>
+      <article>
+        <h3>Mie Bangka</h3>
+        <p>Mie Bangka berasal dari Pulau Bangka dan dikenal dengan teksturnya yang kenyal serta kuah kaldunya yang gurih. Biasanya disajikan dengan irisan ayam, tauge, dan kerupuk pangsit, serta diberi tambahan sambal khas Bangka yang memiliki rasa pedas dan segar. Keunikan mie ini terletak pada bumbu ebi yang memberikan cita rasa khas.</p>
+        
+        <h3>Lomie</h3>
+        <p>Lomie merupakan mie berkuah kental yang berasal dari tradisi kuliner Tionghoa-Indonesia. Kuahnya yang kental biasanya terbuat dari kaldu ayam atau seafood yang dipadukan dengan tepung maizena untuk menciptakan tekstur yang pekat. Lomie sering disajikan dengan potongan ayam, udang, dan sayuran seperti caisim.</p>
+        
+        <h3>Yamien</h3>
+        <p>Yamien adalah mie kering yang berasal dari Jawa Barat. Mie ini memiliki dua varian utama, yaitu yamien manis dan yamien asin. Yamien manis diberi tambahan kecap manis yang membuat rasanya lebih gurih dan sedikit manis, sedangkan yamien asin memiliki cita rasa lebih gurih tanpa tambahan kecap manis. Biasanya disajikan dengan topping ayam cincang dan pangsit goreng atau rebus.</p>
+        
+        <h3>Mie Ayam Biasa</h3>
+        <p>Mie ayam adalah salah satu jenis mie yang paling populer dan mudah ditemukan di berbagai daerah di Indonesia. Mie ini biasanya disajikan dengan potongan ayam berbumbu kecap, pangsit, bakso, serta sayuran seperti caisim. Kuahnya yang gurih serta tekstur mie yang lembut menjadikan mie ayam sebagai hidangan yang disukai oleh banyak orang.</p>
+        
+        <h3>Bakmi</h3>
+        <p>Bakmi adalah istilah umum untuk mie yang memiliki tekstur kenyal dan bisa disajikan dengan berbagai macam topping. Bakmi bisa disajikan dalam bentuk kuah ataupun kering, tergantung pada preferensi masing-masing penikmatnya. Beberapa varian bakmi yang populer termasuk bakmi Jawa yang memiliki cita rasa rempah khas serta bakmi Medan yang terkenal dengan topping daging cincang dan pangsit goreng.</p>
+        
+        <h3>Kenikmatan Mie dalam Setiap Suapan</h3>
+        <p>Dengan berbagai pilihan mie yang ada, setiap jenis mie menawarkan pengalaman rasa yang unik dan khas. Baik itu mie dengan kuah gurih, mie kering yang manis, atau mie bertekstur kenyal dengan berbagai topping lezat, semuanya memiliki keistimewaan tersendiri.</p>
+        <p>Di Mie Ayam 97, kami menghadirkan cita rasa mie autentik dengan sentuhan modern, menggunakan bahan-bahan berkualitas dan resep tradisional yang telah disesuaikan dengan selera masa kini. Nikmati berbagai variasi mie pilihan kami yang tidak hanya lezat, tetapi juga memberikan pengalaman kuliner yang memuaskan!</p>
+        <p><strong>Kunjungi Mie Ayam 97 dan temukan kelezatan mie yang tiada duanya!!!</strong></p>
       </article>
     </div>
     
